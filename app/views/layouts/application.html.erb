@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <%= yield :head %>
   </head>
 
@@ -16,12 +17,12 @@
     <div>
       <% if user_signed_in? %>
         Logged in as <strong><%= current_user.email %></strong> |
-        <%= link_to 'Show profile', current_user %> |
-        <%= link_to 'Edit profile', edit_user_registration_path %> |
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <%= link_to 'Show profile', current_user, class: "btn active" %> |
+        <%= link_to 'Edit profile', edit_user_registration_path, remote: true, class:"btn active navbar-brand", data: { 'bs-toggle' => "modal", "bs-target" => "#staticBackdrop" }%> |
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn active" %>
       <% else %>
-        <%= link_to "Sign up", new_user_registration_path %> |
-        <%= link_to "Login", new_user_session_path %>
+        <%= link_to "Sign up", new_user_registration_path, class: "btn active"%> |
+        <%= link_to "Login", new_user_session_path, class: "btn active" %>
       <% end %>
     </div>
     <hr>
@@ -40,3 +41,22 @@
     <%= yield %>
   </body>
 </html>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Profile</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-success">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

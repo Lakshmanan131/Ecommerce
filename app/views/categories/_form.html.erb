@@ -11,14 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="field form-group d-flex ">
+    <%= form.text_field :name, class:"form-control w-25", placeholder:"Enter your Category name" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="field form-group d-flex">
+    <%= form.text_area :description, class:"form-control w-25", placeholder:"Enter Description" %>
   </div>
 
   <div class="actions">
